@@ -1,28 +1,34 @@
-import { Show, onMount } from 'solid-js'
-import { Avatar } from '../avatars/Avatar'
-import { Marked } from '@ts-stack/markdown'
+import { Show, onMount } from 'solid-js';
+import { Avatar } from '../avatars/Avatar';
+import { Marked } from '@ts-stack/markdown';
 
 type Props = {
-  message: string
-  showAvatar?: boolean
-  avatarSrc?: string
-  backgroundColor?: string
-  textColor?: string
+  message: string;
+  showAvatar?: boolean;
+  avatarSrc?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
-const defaultBackgroundColor = '#3B81F6'
-const defaultTextColor = '#ffffff'
+const defaultProps: Partial<Props> = {
+  showAvatar: true,
+};
 
-Marked.setOptions({ isNoP: true })
+const defaultBackgroundColor = '#3B81F6';
+const defaultTextColor = '#ffffff';
+
+Marked.setOptions({ isNoP: true });
 
 export const GuestBubble = (props: Props) => {
-  let userMessageEl: HTMLDivElement | undefined
+  props = { ...defaultProps, ...props };  // Merge the default props with the provided props
+
+  let userMessageEl: HTMLDivElement | undefined;
 
   onMount(() => {
     if (userMessageEl) {
-      userMessageEl.innerHTML = Marked.parse(props.message)
+      userMessageEl.innerHTML = Marked.parse(props.message);
     }
-  })
+  });
 
   return (
     <div

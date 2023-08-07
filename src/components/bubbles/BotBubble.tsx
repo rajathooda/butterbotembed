@@ -1,28 +1,34 @@
-import { Show, onMount } from 'solid-js'
-import { Avatar } from '../avatars/Avatar'
-import { Marked } from '@ts-stack/markdown'
+import { Show, onMount } from 'solid-js';
+import { Avatar } from '../avatars/Avatar';
+import { Marked } from '@ts-stack/markdown';
 
 type Props = {
-  message: string
-  showAvatar?: boolean
-  avatarSrc?: string
-  backgroundColor?: string
-  textColor?: string
+  message: string;
+  showAvatar?: boolean;
+  avatarSrc?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
-const defaultBackgroundColor = '#f7f8ff'
-const defaultTextColor = '#303235'
+const defaultProps: Partial<Props> = {
+  showAvatar: true,
+};
 
-Marked.setOptions({ isNoP: true })
+const defaultBackgroundColor = '#f7f8ff';
+const defaultTextColor = '#303235';
+
+Marked.setOptions({ isNoP: true });
 
 export const BotBubble = (props: Props) => {
-  let botMessageEl: HTMLDivElement | undefined
+  props = { ...defaultProps, ...props };  // Merge the default props with the provided props
+  
+  let botMessageEl: HTMLDivElement | undefined;
 
   onMount(() => {
     if (botMessageEl) {
-      botMessageEl.innerHTML = Marked.parse(props.message)
+      botMessageEl.innerHTML = Marked.parse(props.message);
     }
-  })
+  });
 
   return (
     <div
