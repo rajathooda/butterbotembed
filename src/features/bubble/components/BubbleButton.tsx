@@ -7,10 +7,12 @@ type Props = ButtonTheme & {
     toggleBot: () => void
 }
 
-const defaultButtonColor = '#3B81F6'
+const defaultButtonColor = '#341964'
 const defaultIconColor = 'white'
 const defaultBottom = '20'
 const defaultRight = '20'
+const defaultCustomIconSrc = 'https://cdn.shopify.com/s/files/1/0793/8418/3092/files/bblogo.png?v=1690918654';
+
 
 export const BubbleButton = (props: Props) => {
     return (
@@ -19,7 +21,7 @@ export const BubbleButton = (props: Props) => {
             onClick={() => props.toggleBot()}
             class={
                 `fixed shadow-md rounded-full hover:scale-110 active:scale-95 transition-transform duration-200 flex justify-center items-center animate-fade-in` +
-                (props.size === 'large' ? ' w-16 h-16' : ' w-12 h-12')
+                (props.size === 'medium' ? ' w-12 h-12' : ' w-16 h-16')
             }
             style={{
                 'background-color': props.backgroundColor ?? defaultButtonColor,
@@ -43,10 +45,10 @@ export const BubbleButton = (props: Props) => {
                     <path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z' />
                 </svg>
             </Show>
-            <Show when={props.customIconSrc}>
+            <Show when={props.customIconSrc ?? defaultCustomIconSrc}>
                 <img
-                    src={props.customIconSrc}
-                    class={'rounded-full object-cover' + (props.isBotOpened ? 'scale-0 opacity-0' : 'scale-100 opacity-100') + (props.size === 'large' ? ' w-9 h-9' : ' w-7 h-7')}
+                    src={props.customIconSrc ?? defaultCustomIconSrc}
+                    class={`rounded-full object-cover` + (props.isBotOpened ? 'scale-0 opacity-0' : 'scale-100 opacity-100') + (props.size === 'large' ? ' w-9 h-9' : ' w-7 h-7')}
                     alt='Bubble button icon'
                 />
             </Show>
