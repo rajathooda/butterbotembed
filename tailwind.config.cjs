@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const defaultTheme = require('tailwindcss/defaultTheme')
 
-function rem2px(input, fontSize = 16) {
+function rem2px(input, fontSize = 14) {
     if (input == null) {
         return input
     }
