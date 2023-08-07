@@ -235,8 +235,10 @@ export const Bot = (props: BotProps & { class?: string }) => {
     })
 
     createEffect(() => {
-        if (props.fontSize && botContainer) botContainer.style.fontSize = `${props.fontSize}px`
+        const fontSizeToApply = props.fontSize ?? 14;
+        if (botContainer) botContainer.style.fontSize = `${fontSizeToApply}px`;
     })
+    
 
     // eslint-disable-next-line solid/reactivity
     createEffect(async() => {

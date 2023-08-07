@@ -51,7 +51,8 @@ export const Badge = (props: Props) => {
       "text-align": 'center',
       color: props.poweredByTextColor ?? defaultTextColor,
       "background-color": props.badgeBackgroundColor ?? '#ffffff'
-    }}>powered by 
+    }}><span>powered by&nbsp;</span>
+
       <a
         ref={liteBadge}
         href={'https://butterbot.ai/'}
